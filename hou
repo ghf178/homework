@@ -1,0 +1,94 @@
+<!-- spring -->
+  	<dependency>
+    	<groupId>org.springframework</groupId>
+		<artifactId>spring-beans</artifactId>
+		<version>4.3.8.RELEASE<ersion>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+		<version>4.3.8.RELEASE<ersion>
+    </dependency>
+  	<!-- spring mvc -->
+  	<dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-web</artifactId>
+    	<version>4.3.8.RELEASE<ersion>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-webmvc</artifactId>
+    	<version>4.3.8.RELEASE<ersion>
+    </dependency>
+
+
+<servlet>
+  	<servlet-name>dispatcher<rvlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet<rvlet-class>
+  	<init-param>
+	  	<param-name>contextConfigLocation</param-name>
+	  	<param-value>classpath:dispatcher.xml</param-value>
+  	</init-param>
+  <rvlet>
+  
+  <servlet-mapping>
+  	<servlet-name>dispatcher<rvlet-name>
+  	<url-pattern>/</url-pattern>
+  <rvlet-mapping>
+
+
+@Component
+public class ExceptionH implements HandlerExceptionResolver{
+
+	@Override
+	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler,
+			Exception ex) {
+		// TODO Auto-generated method stub
+		
+		ModelAndView mav = new ModelAndView("errorPage");
+		
+		return mav;
+	}
+
+}
+
+
+
+@RequestMapping("/exception")
+	public String exceptionTest() throws Exception{
+		throw new Exception("exception test");
+	}
+
+
+<dependency>
+  		<groupId>org.mybatis</groupId>
+  		<artifactId>mybatis</artifactId>
+  		<version>3.4.5<ersion>
+  	</dependency>
+  
+  	<dependency>
+    	<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>6.0.5<ersion>
+    </dependency>
+2017/9/18 11:08:02
+刘祥利 2017/9/18 11:08:02
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/demo2?serverTimezone=UTC"/>
+        <property name="username" value="root"/>
+        <property name="password" value="llil1988"/>
+      </dataSource>
+    </environment>
+  </environments>
+  <mappers>
+    <mapper resource="org/niit/com/config/info.xml"/>
+  </mappers>
+</configuration>
